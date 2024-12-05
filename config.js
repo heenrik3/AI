@@ -5,7 +5,7 @@ dotenv.config()
 
 const { API, MODEL } = process.env
 
-export function image(file) {
+const image = file => {
 	const data = file.buffer.toString('base64')
 	const mimeType = file.mimetype
 
@@ -17,5 +17,8 @@ export function image(file) {
 	}
 }
 
-export const TYPE_REGEX = /^image\/(jpg|jpeg|png|gif|bmp|webp|svg)$/i,
-	AI = new GoogleGenerativeAI(API).getGenerativeModel({ model: MODEL })
+const TYPE_REGEX = /^image\/(jpg|jpeg|png|gif|bmp|webp|svg)$/i
+
+const AI = new GoogleGenerativeAI(API).getGenerativeModel({ model: MODEL })
+
+export default { image, TYPE_REGEX, AI }
